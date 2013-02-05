@@ -373,26 +373,15 @@ There are only 8 reserved keywords:
 ##Oup Module
 
 The 'oup' keyword is preserved for the root module.  
-This is the only module public available that starts with a large capital.  
+This is the only module public available that starts with a small capital.  
 It contains all the standard functions for Oup.  
 
-You can drop the 'oup.', unless you declare your own modules with same names.  
-The evaluator searches for the functions in following order:
-
-    previous declared
-    parent expressions
-    oup modules
-    oup files in folder
-    
 Oup modules are named after verbs:
 
     oup.Convert     // Convert between data types.  
     oup.Calc        // Numbers, PI and stuff.  
-    oup.Export
-    oup.Group       // Combine collections.
-    oup.Import  
-    oup.Sort
-    oup.Simulate
+    oup.Group       // Combine collections.  
+    oup.Sort        // Sort stuff.  
 
 ##Casting 
     
@@ -400,7 +389,6 @@ Casting of one variable to another is done by using the 'oup' module.
 
     oup.Convert.ToNumber () "23"
     oup.Convert.ToString () 23
-    oup.
 
 ##Multiple Sources
 
@@ -414,4 +402,8 @@ Use the '<-' assigment operator with '.oup' extension to evaluate the file.
     
     // b.oup
     var b <- a.oup
+
+##Numbers
+
+Like Lua, all numbers in Oup are double.  
 
