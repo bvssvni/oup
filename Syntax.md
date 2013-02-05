@@ -149,6 +149,9 @@ Actually, this is not completely accurate, since Oup passes expression nodes.
 It is the responsibility of the function to compute the arguments.  
 'A' receives the expression linked to 'B () C () void' and then evaluates it.  
 This technique allows a function to be lazy and only compute what it needs.  
+Only because there is an expression does not mean it computes anything,  
+but it behaves like it would if it computed all the time.  
+When and which order to compute expressions is solved by the expression optimizer.  
 
 You can declare your own functions in Oup:
 
@@ -160,7 +163,7 @@ Whatever expression passed to the 'name' argument is passed on to the 'Print' fu
 The expression is not evaluated until it is explicit told to do so by a function.  
 In that sense, functions written in Oup are placeholders for calls to the underlying API.  
 
-Operators are just functions as well, there is 'computation' going on in a function.  
+Operators are just functions as well, there is no 'computation' going on in a function.  
 In fact, the dependices are traced back to constants or variables.  
 
     func add () a, b {
@@ -203,6 +206,26 @@ You can even replace a function or add a new one to a module:
             return a - b
         }
     }
+
+Because a new function can be declared with same name, there is a strict meaning of which function a name points to.  
+Functions are emitted to a manager that keeps control over the scope of a function.  
+When referring to a function, the last emitted function with same name before that point is used.  
+
+    func a () void {
+        Print () "Hello"  // Call 4
+    }
+    
+    func b () void {
+        a () void         // Call 3
+    }
+    
+    func a () void {
+        b () void         // Call 2
+    }
+    
+    a () void             // Call 1, prints "hello".  
+
+Notice that functions are not deleted, you can declare a new function with same name but not delete any previous.  
 
 ##Ifs
 
@@ -279,7 +302,15 @@ The 'void' keyword is used to call a function that takes no parameters.
     
 ##Operators
 
-When there is a minus sign '-' after a non-numeric followed by a digit,  
+When there is a minus sign '-' after a non-numeric followed by a digit, like
+
+    1+-2
+    
+or followed by an 'e' at a end of a word that starts with a digit or '-', like
+
+    3e-8
+    -3e-8
+
 the minus sign is assumed to belong to a number.  
 
     =       Assign expression.
@@ -379,6 +410,16 @@ Use the '<-' assigment operator with '.oup' extension to evaluate the file.
 ##Numbers
 
 Like Lua, all numbers in Oup are double.  
+
+The decimal seperator is '.', and 'e' is used for scientific notation:
+
+    23.45
+    
+    10e7
+    
+    10e-8
+    
+    7.2309e3
 
 ##Recursive Expressions
 
