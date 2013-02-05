@@ -133,12 +133,36 @@ Example:
 
 ##Functions
 
+A function call is done by sending arguments after the '()' operator:
+
+    Print () "Hello"
+    
+The rest of the line is sent as arguments, but you can chain functions:
+
+    var a = A () B () C () void
+    
+First function 'C' is called with no arguments.  
+Then function 'B' is called with the result from 'C'.  
+Then function 'A' is called with the result from 'B'.  
+
+Actually, this is not completely accurate, since Oup passes expression nodes.  
+It is the responsibility of the function to compute the arguments.  
+'A' receives the expression linked to 'B () C () void' and then evaluates it.  
+This technique allows a function to be lazy and only compute what it needs.  
+
 You can declare your own functions in Oup:
 
     func sayHello () name {
         Print () "Hello " + name
     }
     
+Whatever expression passed to the 'name' argument is passed on to the 'Print' function.  
+The expression is not evaluated until it is explicit told to do so by a function.  
+In that sense, functions written in Oup are placeholders for calls to the underlying API.  
+
+Operators are just functions as well, there is 'computation' going on in a function.  
+In fact, the dependices are traced back to constants or variables.  
+
     func add () a, b {
         return a + b
     }
@@ -272,6 +296,8 @@ the minus sign is assumed to belong to a number.
     '       Reads the next character as Char followed by a '.  
     :       Used for communcation over a socket or channel, left argument is id of object.  
             Example: 3:0,0,255
+    []      Access list by index.
+    ()      Call function with following parameters
     
     +=      If expression, reuses the existing one and adds another term with + operator.  
             If value, adds the value of the right side to the existing value.  
