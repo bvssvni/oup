@@ -183,7 +183,7 @@ In Editor Mode, Oup only allow altering of values used with the '=' assigment op
 One cannot change expressions that uses the '<-' assigment operator.  
 This is used in for-loops to create objects and import from other files:
 
-    for i <- range () 0, 10 {  
+    for i <- Range () 0, 10 {  
         ...  
     }  
     
@@ -325,7 +325,7 @@ This is to avoid problems with negative numbers.
 
 Oup supports loops to create many objects of similar kind:  
 
-    for i <- range () 0, 10 {
+    for i <- Range () 0, 10 {
            var a = block () .x, .y, .w, .h {
               var x = i * 20
               var y = 10
@@ -457,3 +457,31 @@ This is a recursive expression that provides feedback to the variable:
     
 The value is declared last, so it does not "push" other letters when it changes.  
 
+##Lazy Evaluation
+
+When using the '<-' operator, the variable is treated as a constant in expressions.  
+
+    var a <- 5
+    var b = a * 10
+    
+The only different from using '=' instead, is that you allow 'a' to be modified at run-time:
+
+    var a = 5
+    var b = a * 10
+    
+When declaring a variable in a function and returning it, the value is still editable,  
+as long there is a 1:1 relationship between the returned value and the variable.  
+    
+    func myValue () void {
+        var a = 5
+        return a
+    }
+    
+    var b = 10 * myValue () void
+
+The evaluator uses groups to join the dependices of expressions.  
+Each variable is tagged with a number, and by using group-oriented programming,  
+a dependency is not listed more than once.  
+
+
+    
