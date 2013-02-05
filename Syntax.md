@@ -64,6 +64,42 @@ The source is actually not affecting the run-time, it is an interface where only
 the variables are editable.  
 The changes affects the tree directly, without any recompilation.  
 
+##Lists
+
+Lists can be declared by using comma as separator.  
+You can mix the types in a list.  
+
+    var a = 1, 2, 3, 4
+    var b = "Once", "uppon", "a", "time"
+    var c = "I", "am", 67, "years", "old"
+    var d = a, b, c
+    
+Because comma is used for lists, the '.' is used for decimal separator:  
+
+    var a = 1.4, 2.7, 3.323, 4.42309
+    
+All variables are lists, such that a single number of value is treated a list of length 1.  
+To create an empty list, use the keyword 'void':  
+
+    var a = 0     // A list of length 1.  
+    var b = void  // A list of length 0.
+    
+When you pass arguments to a function, you are passing a list.  
+
+    Add () 1, 2    // Argument are lists.
+    
+To pass multiple lists, use sub-expressions:  
+
+    Join () " ", .sentence {
+        var sentence = "hello", "how", "are", "you?"
+    }
+    
+To access a list item by index, use the '[]' operator:  
+
+    var a = 1, 2, 3, 4
+    for i <- Index () a
+        Print () a [] i
+
 ##Comments
 
 Oup uses C++/C# like comment style.  
