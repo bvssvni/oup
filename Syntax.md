@@ -301,6 +301,12 @@ The 'void' keyword is used to call a function that takes no parameters.
 
     doSomething () void
     
+Declaring an unitialized variable is equal to set it to 'void', an empty list:  
+
+    var a = void
+    
+    var a
+    
 ##Operators
 
 When there is a minus sign '-' after a non-numeric followed by a digit, like
