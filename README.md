@@ -3,6 +3,13 @@ oup
 
 Oup - A content generation programming language (under work).
 
+##The Purpose of Oup
+
+1. Optimize expressions.  
+2. Emit objects to backend.  
+3. Display editable values of objects in real-time.  
+4. Allow the user to edit the values for rapid prototyping and debugging.  
+
 ##What Is Oup?  
 
 Oup is a syntax strict programming language for content generation.  
@@ -12,8 +19,8 @@ It allows one to hide the details of one object without creating conflicts or ne
 
 For example, we have a simple game scene with 2 blocks:  
 
-    block () 0, 200, 100, 10  
-    block () 110, 200, 100, 10  
+    Block () 0, 200, 100, 10  
+    Block () 110, 200, 100, 10  
     
 To make it clearer what the numbers mean with the numbers, we can write it like this:  
 
@@ -21,23 +28,23 @@ To make it clearer what the numbers mean with the numbers, we can write it like 
     var y1 = 200
     var w1 = 100
     var h1 = 10
-    block () x1, y1, w1, h1
+    Block () x1, y1, w1, h1
     
     var x2 = 110
     var y2 = 200
     var w2 = 100
     var h2 = 10
-    block () x2, y2, w2, h2
+    Block () x2, y2, w2, h2
 
 This is messy and easy to make mistakes, but in Oup we can write this way:  
 
-    block () .x, .y, .w, .h {
+    Block () .x, .y, .w, .h {
         var x = 0
         var y = 200
         var w = 100
         var h = 10
     }
-    block () .x, .y, .w, .h {
+    Block () .x, .y, .w, .h {
         var x = 110
         var y = 200
         var w = 100
@@ -47,19 +54,19 @@ This is messy and easy to make mistakes, but in Oup we can write this way:
 Now it is easier to create more blocks by duplicating the code we have.  
 Since we have 3 values shared between the two blocks, we can write like this:  
 
-    var a = block () .x, .y, .w, .h {
+    var a = Block () .x, .y, .w, .h {
         var x = 0
         var y = 200
         var w = 100
         var h = 10
     }
-    var b = block () .x, a.y, a.w, a.h {
+    var b = Block () .x, a.y, a.w, a.h {
         var x = 110
     }
 
 Or simply:
 
-    var a = block () .x, .y, .w, .h {
+    var a = Block () .x, .y, .w, .h {
         var x = 0
         var y = 200
         var w = 100
@@ -74,7 +81,7 @@ and even make the source code update in real-time.
 You can move one of the blocks in an editor and the blocks will move together.  
 If we want the blocks to move up and down with time:
 
-    var a = block () .x, .y, .w, .h {
+    var a = Block () .x, .y, .w, .h {
         var x = 0
         var y = 200 + .wave {
             var wave = .amplitude * Sin () .phaseExpr {
@@ -86,26 +93,25 @@ If we want the blocks to move up and down with time:
         var w = 100
         var h = 10
     }
-    var b = block () .x, a.y, a.w, a.h {
+    var b = Block () .x, a.y, a.w, a.h {
         var x = 110
     }
 
-In Oup, everything is an expression.  
-For example, the expression optimizer reads the code above as following:  
+The parser reads the code above as following:  
 
     NAME                TYPE            DEPENDICES
-    start               expr            -
-    a                   block           a.x, a.y, a.w, a.h
-    a.x                 number          -
-    a.y                 expr            a.y.wave
-    a.y.wave            expr            a.y.wave.amplitude, a.y.wave.phaseExpr
-    a.y.wave.amplitude  number          -
-    a.y.wave.phase      number          -
-    a.y.wave.phaseExpr  expr            a.y.wave.phase
-    a.w                 number          -
-    a.h                 number          -
-    b                   block           b.x, a.y, a.w, a.h
-    b.x                 number          -
+    start               Expr            -
+    a                   Block           a.x, a.y, a.w, a.h
+    a.x                 Number          -
+    a.y                 Expr            a.y.wave
+    a.y.wave            Expr            a.y.wave.amplitude, a.y.wave.phaseExpr
+    a.y.wave.amplitude  Number          -
+    a.y.wave.phase      Number          -
+    a.y.wave.phaseExpr  Expr            a.y.wave.phase
+    a.w                 Number          -
+    a.h                 Number          -
+    b                   Block           b.x, a.y, a.w, a.h
+    b.x                 Number          -
 
 An expression tells how a variable shall behave, when it should be updated and what it depends on.  
 Oup is designed to be interactive, so it exposes the syntax tree to other editors.  
@@ -167,27 +173,19 @@ Nested paranthesis are not allowed, instead you can use sub-expressions:
           
 A '.' in front of a name tells "look for this variable among the sub-expressions.  
 
-Oup supports loops to create many objects of similar kind:  
-
-    for i <- range () 0, 10 {
-           var a = block () .x, .y, .w, .h {
-              var x = i * 20
-              var y = 10
-              var w = 5
-              var h = 5
-           }
-    }
-    
-Even the objects are created in a loop, they are linked to expressions with a static location,  
-so you change these properties in the source or in the editor seamingless.  
-
 ##Design Mode vs Editor Mode
 
 In Design Mode, one can edit the source like a normal file.  
 
 In Editor Mode, Oup only allow altering of values used with the '=' assigment operator.  
 One cannot change expressions that uses the '<-' assigment operator.  
-This is used in for-loops to create objects safely.  
+This is used in for-loops to create objects and import from other files:
+
+    for i <- range () 0, 10 {  
+        ...  
+    }  
+    
+    var a <- MyFile.oup  
 
 The source is actually not affecting the run-time, it is an interface where only  
 the variables are editable.  
@@ -195,7 +193,7 @@ The changes affects the tree directly, without any recompilation.
 
 ##Comments
 
-Oup uses C++ like comment style.  
+Oup uses C++/C# like comment style.  
 
 // for single-line.  
 /* */ for multi-line.  
@@ -264,15 +262,156 @@ If you want to inherit from another object and change some properties, you can u
         }
     }
 
+##Ifs
+
+Because the syntax is strictly a tree in Oup, there is no 'elif' or 'else' like in Python.  
+
+    Python:
+        if a < 3:
+            print("Larger")
+        else:
+            print("Less or equal")
+            
+    Oup:
+        var cond = a < 3
+        if cond == true {
+            print () "Larger"
+        }
+        if cond == false {
+            print () "Less or equal"
+        }
+
+Often it is possible to write it in a simpler way:
+
+    print () .msg {
+        var msg = "Less or equal"
+        if a < 3 {
+            msg = "Larger"
+        }
+    }
+
+##'=' Assigment vs '<-' Assigment
+
+Oup has two operators for assignment.  
+The first one:
+
+    var a = 0
+    
+This value tells Oup that the right side can:
+
+1. Be changed if the right side is a single value.  
+2. Computed whenever any dependicy changes.  
+
+The other type of assignment computes the expression on the right side just once:
+
+    var a <- 0
+    
+This means it can not be modified at run-time.  
+
+##For loop
+
+Oup supports loops to create many objects of similar kind:  
+
+    for i <- range () 0, 10 {
+           var a = block () .x, .y, .w, .h {
+              var x = i * 20
+              var y = 10
+              var w = 5
+              var h = 5
+           }
+    }
+    
+Even the objects are created in a loop, they are linked to expressions with a static location,  
+so you change these properties in the source or in the editor.  
+This is possible because the values are emitted to the backend independently of what  
+object they belong to.  
+
+##Void
+
+Oup requires an expression to end with a 'name' type.  
+The 'void' keyword is used to call a function that takes no parameters.  
+
+    doSomething () void
+    
+##Modules
+    
+If you want to create a module without any data, you can use 'void':
+
+    var MyModule = void {
+        ...
+    }
+    
+Any reference to the name 'MyModule' without a '.' after it will make the evaluator throw an error.  
+
+##Public: Large Capital
+
+To make a function, variable or module public, use a large capital in the first letter.  
+
+    var a = 0   // not visible outside this file.
+    var A = 0   // visible outside this file.
+    
+    func a () void {    // not visible outside this file.
+        ...
+    }
+    func A () void {    // visible outside this file.
+        ...
+    }
+
+##Reserved Keywords
+
+There are only 8 reserved keywords:
+
+    false
+    for
+    func
+    if
+    oup     (root object containing standard functions, also used for external files)
+    true
+    var
+    void
+    
+##Oup Module
+
+The 'oup' keyword is preserved for the root module.  
+This is the only module public available that starts with a large capital.  
+It contains all the standard functions for Oup.  
+
+You can drop the 'oup.', unless you declare your own modules with same names.  
+The evaluator searches for the functions in following order:
+
+    previous declared
+    parent expressions
+    oup modules
+    oup files in folder
+    
+Oup modules are named after verbs:
+
+    oup.Convert     // Convert between data types.  
+    oup.Calc        // Numbers, PI and stuff.  
+    oup.Export
+    oup.Group       // Combine collections.
+    oup.Import  
+    oup.Sort
+    oup.Simulate
+
+##Casting 
+    
+Casting of one variable to another is done by using the 'oup' module.  
+
+    oup.Convert.ToNumber () "23"
+    oup.Convert.ToString () 23
+    oup.
+
 ##Multiple Sources
 
-Oup supports the keyword 'return' like in Lua to emulate modules.  
+Oup supports the keyword 'return' at top level to emulate modules.  
 
     // a.oup
     var a = block () 0, 0, 100, 100
     return a
     
+Use the '<-' assigment operator with '.oup' extension to evaluate the file.  
+    
     // b.oup
-    import a <- a.oup
-    var b = a
+    var b <- a.oup
 
