@@ -351,21 +351,27 @@ The 'void' keyword is used to call a function that takes no parameters.
 When there is a minus sign '-' after a non-numeric followed by a digit,  
 the minus sign is assumed to belong to a number.  
 
-    =       // Assign expression.
-    '<- '   // Assign value of expression. Notice the required space at end.
-    +       // Add.
-    -       // Subtract.
-    *       // Multiply.
-    /       // Divide.
-    %       // Modulus.
-    ;       // Separation of recursive expression from initial value.
+    =       Assign expression.
+    '<- '   Assign value of expression. Notice the required space at end.
+    +       Add.
+    -       Subtract.
+    *       Multiply.
+    /       Divide.
+    %       Modulus.
+    ;       Separation of recursive expression from initial value.
+            Example: var a = a * 2 ; 1  
+    "       Reads the rest of the line as string, or until it matches another ".  
+        \"      Reads " to the current reading string.  
+    '       Reads the next character as Char followed by a '.  
+    :       Used for communcation over a socket or channel, left argument is id of object.  
+            Example: 3:0,0,255
     
-            Example: var a = a * 2 ; 1
-    
-    +=
-    -=
-    *=
-    /=
+    +=      If expression, reuses the existing one and adds another term with + operator.  
+            If value, adds the value of the right side to the existing value.  
+    -=      ...
+    *=      ...
+    /=      ...
+    %=      ...
     
 ##Modules
     
@@ -483,5 +489,41 @@ The evaluator uses groups to join the dependices of expressions.
 Each variable is tagged with a number, and by using group-oriented programming,  
 a dependency is not listed more than once.  
 
+##Communication With Backend
 
-    
+All functions in Oup that are linked to a backend is tagged with options that helps the evaluator.  
+One of these is 'emitter' that tells that an object is created.  
+
+When Oup is not connected to a backend, it will capture the emitted objects and dump them in raw format.  
+This format is Oup code, so it can read itself.  
+You can also write XML and JSON exporters in Oup.  
+
+When Oup is connected with a backend, it will be able to "talk" to it.  
+The trick is that the backend reads the Oup file and constructs a Oup syntax tree.  
+The same happens in the Oup IDE, and Oup is designed to make this happen deterministically,  
+so the same syntax tree is on both sides.  
+This is done by using the same technique as in Real Time Strategy multiplayer games.  
+
+When the backend changes an object, for example the user changes a color and radius, 
+it will send a pieace of Oup code through a channel with the 'id:value' of the object.  
+This happens automatically using multi-threads on a human readable update frequence.  
+A thread simply keeps a copy of each variable and checks if they have updated.  
+The backend does not have to send data for loop, only like .5 seconds or so.  
+For example:  
+
+     4:255,0,0      // Parameters to a Color function.  
+     6:15           // Value for the radius variable.  
+     
+The Oup IDE parses this text and looks up the variables and then present the values on the screen.  
+The values changes color in the text editor to indicate that a change just happened.  
+
+The communication can also happen the other way, by the user changing a value and the IDE sends  
+this change over to the backend, which can choose to ignore it.  
+The text editor is not updated until the backend sends a new notification about the update.  
+
+Oup is designed for tools, such as level editors and not optimized for smooth game experience.  
+The problem with games is that they create and destroy objects all the time,  
+which can not be handled by the expression optimizer in Oup.  
+Oup is a content generation programming language, where destroying objects never happens.  
+You can compare it to painting where erasing is not possible without doing it all over.  
+
