@@ -407,3 +407,19 @@ Use the '<-' assigment operator with '.oup' extension to evaluate the file.
 
 Like Lua, all numbers in Oup are double.  
 
+##Recursive Expressions
+
+You can change the expression attached to a variable:  
+
+    var a = 0
+    a = a + 2 * DeltaTime () void
+
+This is not a recursive expression, though.  
+The 'a' in the expression refers to the number declared at the line before it.  
+
+This is a recursive expression that provides feedback to the variable:  
+
+    var a = a + 2 * DeltaTime () void ; 0
+    
+The value is declared last, so it does not "push" other letters when it changes.  
+
