@@ -489,6 +489,19 @@ The evaluator uses groups to join the dependices of expressions.
 Each variable is tagged with a number, and by using group-oriented programming,  
 a dependency is not listed more than once.  
 
+##Randomness
+
+Oup marks all functions that return a value that changes over time as 'random' functions.  
+This property is traced through all dependices, so it will complain if an 'emitter' function is called  
+with an argument that depends on 'random'.  
+
+The reason for this is that when connected to a backend, the construction of a syntax tree and emitted  
+objects must be identical on both sides.  
+The same goes when an 'if' or 'for' statement is depending on 'random' in the condition.  
+All variables and expressions in that block is then marked as 'random'.  
+
+Notice that you can use pseudo-random functions without problems, since these are deterministic.  
+
 ##Communication With Backend
 
 All functions in Oup that are linked to a backend is tagged with options that helps the evaluator.  
@@ -502,6 +515,7 @@ When Oup is connected with a backend, it will be able to "talk" to it.
 The trick is that the backend reads the Oup file and constructs a Oup syntax tree.  
 The same happens in the Oup IDE, and Oup is designed to make this happen deterministically,  
 so the same syntax tree is on both sides.  
+One way to do this is sending an SHA1 key of the emitted object data to confirm.  
 This is done by using the same technique as in Real Time Strategy multiplayer games.  
 
 When the backend changes an object, for example the user changes a color and radius, 
