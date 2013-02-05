@@ -145,12 +145,14 @@ Example:
 At first, it looks like most programming languages, except you place arguments  
 outside the paranthesis '()':  
 
-    print () "hello"
+    Print () "hello"
     
 All operators uses non-alphanumeric characters and all names uses alphanumeric.  
 This means the space between the tokens can be ignored.  
 
     a = 2+1/5
+
+The space within a name or operator can not be ignored.  
 
 All language-specific keywords are put in the beginning of a sentence, such as:
 
@@ -167,7 +169,7 @@ Nested paranthesis are not allowed, instead you can use sub-expressions:
     
     Oup:
     
-      print () 2 * .sum {
+      Print () 2 * .sum {
           var sum = 3 + 5
       }
           
@@ -215,8 +217,9 @@ Example:
     <body>
     <h1>Welcome</h1>
     <p>
-    print () .body
+    Print () .body {
         var body = db.GetContent () void
+    }
     </p>
     </body>
     </html>
@@ -226,7 +229,7 @@ Example:
 You can declare your own functions in Oup:
 
     func sayHello () name {
-        print () "Hello " + name
+        Print () "Hello " + name
     }
     
     func add () a, b {
@@ -240,7 +243,7 @@ You can even add it to an object and point to the same function like expressions
 
     var a = void {
         func sayHello () name {
-            print () "Hello " + name
+            Print () "Hello " + name
         }
     }
     
@@ -261,6 +264,14 @@ If you want to inherit from another object and change some properties, you can u
             return a - b
         }
     }
+    
+You can even replace a function or add a new one to a module:
+
+    a = a {
+        func doSomething () a, b {
+            return a - b
+        }
+    }
 
 ##Ifs
 
@@ -275,15 +286,15 @@ Because the syntax is strictly a tree in Oup, there is no 'elif' or 'else' like 
     Oup:
         var cond = a < 3
         if cond == true {
-            print () "Larger"
+            Print () "Larger"
         }
         if cond == false {
-            print () "Less or equal"
+            Print () "Less or equal"
         }
 
 Often it is possible to write it in a simpler way:
 
-    print () .msg {
+    Print () .msg {
         var msg = "Less or equal"
         if a < 3 {
             msg = "Larger"
@@ -307,6 +318,8 @@ The other type of assignment computes the expression on the right side just once
     var a <- 0
     
 This means it can not be modified at run-time.  
+The '<-' operator requires a space after it, so it's actually '<- '.  
+This is to avoid problems with negative numbers.  
 
 ##For loop
 
@@ -332,6 +345,27 @@ Oup requires an expression to end with a 'name' type.
 The 'void' keyword is used to call a function that takes no parameters.  
 
     doSomething () void
+    
+##Operators
+
+When there is a minus sign '-' after a non-numeric followed by a digit,  
+the minus sign is assumed to belong to a number.  
+
+    =       // Assign expression.
+    '<- '   // Assign value of expression. Notice the required space at end.
+    +       // Add.
+    -       // Subtract.
+    *       // Multiply.
+    /       // Divide.
+    %       // Modulus.
+    ;       // Separation of recursive expression from initial value.
+    
+            Example: var a = a * 2 ; 1
+    
+    +=
+    -=
+    *=
+    /=
     
 ##Modules
     
