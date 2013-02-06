@@ -34,10 +34,13 @@ Takes two groups and returns a group with members of the first that are not memb
 ###Interval index
 
 Sometimes a group refer to intervals in another group.  
+Here is how one gets the interval from a group using index 'i':
 
-    var interval = g [] .a, .b {
-        var a = i << 1
-        var b = a + 1
+    func Interval () g, i {
+        return g [] .a, .b {
+            var a = i << 1
+            var b = a + 1
+        }
     }
 
 ##All Group
