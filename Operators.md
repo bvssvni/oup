@@ -101,7 +101,7 @@ The precedence of operators in ascending order:
     /       Divide.
     &       Bitwise And.
     &&      Boolean And.
-    &&&     Ground And.
+    &&&     Group And.
             
     ..      Creates a range of numbers.
             Example: 1..10
