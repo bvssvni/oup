@@ -43,11 +43,10 @@ To add two lists, you can use sub-expressions:
 
 ##Not vs Except
 
-In Oup, there are no unary operators beside functions.  
-This means, there is no 'Not' operator like '!' in C languages.  
-Instead, Oup uses 'Except' which equals 'And Not'.  
-This is the most common usage of 'Not', because 'Except' tells
-when we want to do interrupt the default condition for an action.
+In Oup, there are no unary operators beside functions.
+There is no 'Not' operator like '!' in C languages.
+Instead, Oup uses '\\' which equals 'And Not' or 'Except' in everyday speech.
+
 '\\' has lower precedence than '||', which means you can write more readable conditions  
 by putting the '\\' operators to the right:
 
