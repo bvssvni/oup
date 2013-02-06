@@ -83,17 +83,25 @@ The precedence of operators in ascending order:
     <       Less check.
     >       Greater check.
     
-    \       Except. Raises an error if there are any other operators to the right of it.
+    <<      Bitshift left. 
+    >>      Bitshift right.
     
     +       Add.
     -       Subtract.
     %       Modulus.
             Example: var a = a * 2 ; 1  
-    |       Or.
+    \       Bitwise Except.
+    \\      Boolean Except.
+    \\\     Group Except.
+    |       Bitwise Or.
+    ||      Boolean Or.
+    |||     Group Or.
             
     *       Multiply.
     /       Divide.
-    &       And.
+    &       Bitwise And.
+    &&      Boolean And.
+    &&&     Ground And.
             
     ..      Creates a range of numbers.
             Example: 1..10
