@@ -84,7 +84,9 @@ To create an empty list, use the keyword 'void':
     var a = 0     // A list of length 1.  
     var b = void  // A list of length 0.
     
-When you pass arguments to a function, you are passing a list.  
+Passing Lists To Functions
+    
+When you pass arguments to a function, Oup is passing a list behind the scene.  
 
     Add () 1, 2    // Argument are lists.
     
@@ -93,6 +95,16 @@ To pass multiple lists, use sub-expressions:
     Join () " ", .sentence {
         var sentence = "hello", "how", "are", "you?"
     }
+    
+When you pass only one list as argument, Oup passes a list with the list as first argument.  
+
+    var b = 1, 2    
+    Add () b      // Error: Requires two arguments.
+    
+To unpack a list, use the 'Unpack' function:
+
+    var b = 1, 2
+    Add () Unpack () b
     
 ##Accessing Items From Lists
     
