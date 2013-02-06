@@ -35,7 +35,6 @@ Takes two groups and returns a group with members of the first that are not memb
 
 Sometimes a group refer to intervals in another group.  
 
-    var i : int
     var interval = g [] i << 1, g [] i << 1 + 1
 
 ##All Group
