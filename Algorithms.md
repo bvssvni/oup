@@ -43,12 +43,6 @@ Here is how one gets the interval from a group using index 'i':
         }
     }
 
-##Group of Source
-
-Contains the entire source code of the file.  
-
-    0, 5432
-
 ##Group of Lines
 
 Contains the interval of the lines.  
