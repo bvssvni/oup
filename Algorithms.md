@@ -75,7 +75,24 @@ This list is used to create groups referring to a part of expression or source.
 
 Reserved keywords such as 'var' or 'for' added to list of tokens,  
 because they break the pattern <name> <op> <name> ...  
-
 Instead, they are added to a group, one for each reserved keyword.  
 
+    for
+    var
+    if
+    func
+
+##Sub-Expression Tree
+
+There can only be one '{' and '}' operator per line.  
+This makes it possible to construct an interval tree based on Group of Lines.  
+The tree is used to limit the context to branches of the tree.  
+
+##Dependency Tree
+
+A variable can be assigned an expression, which has dependencies of other tokens.  
+
+    var -> token -> expr -> group -> token -> expr -> group -> ...
+
+Dependency Tree is based on Group of Tokens.  
 
