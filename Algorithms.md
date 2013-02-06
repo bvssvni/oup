@@ -43,7 +43,7 @@ Here is how one gets the interval from a group using index 'i':
         }
     }
 
-##Group of All Code
+##Group of Souce
 
 Contains the entire source code of the file.  
 
@@ -85,8 +85,9 @@ Instead, they are added to a group, one for each reserved keyword.
 ##Sub-Expression Tree
 
 There can only be one '{' and '}' operator per line.  
-This makes it possible to construct an interval tree based on Group of Lines.  
 The tree is used to limit the context to branches of the tree.  
+
+Sub-Expression Tree is based on Group of Lines.
 
 ##Dependency Tree
 
@@ -94,5 +95,5 @@ A variable can be assigned an expression, which has dependencies of other tokens
 
     var -> token -> expr -> group -> token -> expr -> group -> ...
 
-Dependency Tree is based on Group of Tokens.  
+Dependency Tree is based on List of Tokens.  
 
