@@ -94,11 +94,18 @@ To pass multiple lists, use sub-expressions:
         var sentence = "hello", "how", "are", "you?"
     }
     
+##Accessing Items From Lists
+    
 To access a list item by index, use the '[]' operator:  
 
     var a = 1, 2, 3, 4
     for i <- Index () a
         Print () a [] i
+
+You can also use multiple indices to get more than one element:
+
+    var a = 1, 2, 3, 4
+    var b = a [] 0, 2   // Get '1' and '3'.
 
 ##Comments
 
