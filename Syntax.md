@@ -333,6 +333,8 @@ the minus sign is assumed to belong to a number.
     :       Used for communcation over a socket or channel, left argument is id of object.  
             Example: 3:0,0,255
     
+    ,       Separation of list items.
+    
     []      Access list by index.
     ()      Call function with following parameters.
     
