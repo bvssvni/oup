@@ -43,22 +43,40 @@ Here is how one gets the interval from a group using index 'i':
         }
     }
 
-##Group of Lines
-
-Contains the interval of the lines.  
-
-    0, 10
-    11, 25
-    26, 40
-
 ##Token
 
-A token is an object that tells about a piece of code:  
+A token is an object that refers to a specific location in the source:  
 
     start
     end
     line
     type
+
+##Expression Tree
+
+    FIELD       TYPE
+    
+    value       double
+                string
+                bool
+                variable
+                function
+                
+    token       Token
+    
+    children    list of expression trees
+
+When the expression of a variable is executed, it passes itself as argument,  
+such that they can use sub-expressions or the value of the variable recursively.  
+
+##Group of Lines
+
+The source is not splitted into lines, instead one group per line is used.  
+Contains the interval of the lines.  
+
+    0, 10
+    11, 25
+    26, 40
 
 ##List of Tokens
 
