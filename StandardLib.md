@@ -1,3 +1,9 @@
 #Standard Library
 
-    Length () list
+    Length () arg
+    
+    Unpack () arg
+    
+    Print () arg
+    
+    
