@@ -41,6 +41,27 @@ To add two lists, you can use sub-expressions:
         var c = ...
     }
 
+##Not vs Except
+
+In Oup, there are no unary operators beside functions.  
+This means, there is no 'Not' operator like '!' in C languages.  
+Instead, Oup uses 'Except' which equals 'And Not'.  
+This is the most common usage of 'Not', because 'Except' tells
+when we want to do interrupt the default condition for an action.
+'\\' has lower precedence than '||', which means you can write more readable conditions  
+by putting the '\\' operators to the right:
+
+    C:
+        if ((a || b) && !c) {
+            ...
+        }
+        
+    Oup:
+        // a and b, except c
+        if a || b   \\ c {
+            ...
+        } 
+
 ##Minus Sign
 
 When there is a minus sign '-' after a non-numeric followed by a digit, like
@@ -86,13 +107,14 @@ The precedence of operators in ascending order:
     <<      Bitshift left. 
     >>      Bitshift right.
     
+    \       Bitwise Except.
+    \\      Boolean Except.
+    \\\     Group Except.
+    
     +       Add.
     -       Subtract.
     %       Modulus.
             Example: var a = a * 2 ; 1  
-    \       Bitwise Except.
-    \\      Boolean Except.
-    \\\     Group Except.
     |       Bitwise Or.
     ||      Boolean Or.
     |||     Group Or.
