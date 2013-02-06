@@ -5,8 +5,11 @@ Oup - A content generation programming language (under work).
 
 ##The Purpose of Oup
 
-1. Experiment with smarter syntax.  
-2. Emit objects to .  
+Oup is not a real programming language, it is fictional.  
+It functions as an toy model for generating ideas in the following areas:  
+
+1. Experiment with expression generation.  
+2. Emit objects to standard output, graphics etc.  
 3. Display editable values of objects in real-time.  
 4. Allow the user to edit the values for rapid prototyping and debugging.  
 
