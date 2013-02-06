@@ -247,6 +247,16 @@ When referring to a function, the last emitted function with same name before th
 
 Notice that functions are not deleted, you can declare a new function with same name but not delete any previous.  
 
+##Return
+
+A return statement can have sub-expressions like an ordinary variable:
+
+    func Add () a, b {
+        return .c {
+            var c = a + b
+        }
+    }
+
 ##Ifs
 
 Because the syntax is strictly a tree in Oup, there is no 'elif' or 'else' like in Python.  
