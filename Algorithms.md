@@ -35,7 +35,10 @@ Takes two groups and returns a group with members of the first that are not memb
 
 Sometimes a group refer to intervals in another group.  
 
-    var interval = g [] i << 1, g [] i << 1 + 1
+    var interval = g [] .a, g [] .b {
+        var a = i << 1
+        var b = a + 1
+    }
 
 ##All Group
 
