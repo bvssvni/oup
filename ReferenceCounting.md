@@ -59,5 +59,5 @@ A return statement increases the reference counters of the variables in expressi
     
 If the returned expression from a function is not assigned, the reference counters will be decremented:
 
-    Add ()                    // msg:0
+    Add () void               // msg:0
     
