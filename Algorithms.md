@@ -43,7 +43,7 @@ Here is how one gets the interval from a group using index 'i':
         }
     }
 
-##Group of Souce
+##Group of Source
 
 Contains the entire source code of the file.  
 
