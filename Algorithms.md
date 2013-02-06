@@ -43,15 +43,19 @@ Here is how one gets the interval from a group using index 'i':
         }
     }
 
-##All Group
+##Group of All Code
 
 Contains the entire source code of the file.  
 
     0, 5432
 
-##Lines Group
+##Group of Lines
 
 Contains the interval of the lines.  
+
+    0, 10
+    11, 25
+    26, 40
 
 ##Token
 
@@ -62,17 +66,16 @@ A token is an object that tells about a piece of code:
     line
     type
 
-##Stack -> List -> Tree
+##List of Tokens
 
-Oup starts with pushing tokens on stacks, one at a time.  
-There are 3 stacks:  
+All tokens are pushed to a list such that even terms are 'names' and 'odd' terms are 'operators'.  
+This list is used to create groups referring to a part of expression or source.  
 
-1. One stack for 'names'.  
-2. One stack for 'operator'.  
-3. One stack for precendence of the opereator.  
+##Reserved Keyword Groups
+
+Reserved keywords such as 'var' or 'for' added to list of tokens,  
+because they break the pattern <name> <op> <name> ...  
+
+Instead, they are added to a group, one for each reserved keyword.  
 
 
-
-    1, 2 + 3 * 5, 6
-    
-    
