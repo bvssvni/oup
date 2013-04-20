@@ -14,6 +14,8 @@ Ideas
 
     )(  Declare function
 
+1. Require space around operator in syntax.
+
 Challenges
 
 1. Unary subtraction.
