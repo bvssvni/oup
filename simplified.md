@@ -32,12 +32,15 @@ This is handled by requiring space around operator.
 8. Only one dictionary and list per node.
 8. Allow list of dictionaries.
 9. 'this' keyword.
+10. Use '/' as parent node instead of 'this'.
 4. Allow for-loops.
 5. Use '0 -> 10' as notion for 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
 6. Use '10 <- 0' as notion for 9, 8, 7, 6, 5, 4, 3, 2, 1, 0.
 7. Allow if-statements.
 8. Allow function declarations.
 9. Function return type by using ':'.
+10. A function is a variable created by passing arguments.
+11. No return from functions, using public members instead.
 9. Allow modules.
 10. Big first letter for public function.
 11. Use ')(' to declare functions.
