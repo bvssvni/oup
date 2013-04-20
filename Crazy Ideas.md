@@ -25,21 +25,6 @@ Here is the pseudo-code of the Oup interface:
         //          a = 4, 5, 6
         void overwriteVariable (id, list)
         
-        //      An 'if' is a variable assigned to an expression
-        //      that is evaluated to boolean value.
-        //      Example:
-        //          var a = 1
-        //          if b = a > 0
-        //          b {
-        //              a = -1   // since b is true, we assign 2 to 'a'.
-        //          }
-        id createIf (parentId, name, list)
-        
-        bool evaluateIf (ifId)
-        
-        id createFunction (parentId, name, list)
-        id createFor (parentId, name, list)
-        
         //      Copy the content, including sub 
         void copy (destinationId, sourceId)
     }
@@ -74,22 +59,6 @@ When there is a '.' in front of a variable name, it means 'look up in sub-expres
     var a = .b {
         var b = 10
     }
-    
-When there is a '..' in front of a variable name, it means 'look up in parent-expression'.
-
-    var a = 2
-    var b = 3 {
-        var c = ..a     // c is 2
-    }
-    
-When there is a '...' in front of a variable name, it means 'look up in top-expression'.
-
-    var a = 1
-    var b = void {
-        var c = void {
-            var d = ...a
-        }
-    }
 
 Oup allows values to be changed
 
@@ -99,7 +68,7 @@ Oup allows values to be changed
 When a variable is copied from another,
 it also copies sub-expressions.
 
-    var a = void {
+    var a = {
         var b = 3
     }
     var c : a {
@@ -113,8 +82,6 @@ an exception will be thrown.
     var c : a {
         b = 7           // ERROR: 'b' is not declared.
     }
-    
-
 
 ##Oup List
 
