@@ -18,8 +18,10 @@ This is handled by requiring space around operator.
     
 Ideas
 
-1. Do not allow double-space around operators.
-2. Use ')(' to declare functions.
+1. Use brackets for sub-expressions.
+2. Use '.' to refer to variable in sub-expression.
+3. Do not allow double-space around operators.
+4. Use ')(' to declare functions.
 
 Challenges
 
