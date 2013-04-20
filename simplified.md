@@ -24,6 +24,7 @@ Ideas
 4. Only require space after operator.
 5. Only require space in front of negative number.
 4. Do not allow double-space around operators.
+5. Only allow assignment as overridden values.
 4. Allow for-loops.
 5. Use '0 -> 10' as notion for 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
 6. Use '10 <- 0' as notion for 9, 8, 7, 6, 5, 4, 3, 2, 1, 0.
@@ -37,3 +38,4 @@ Challenges
 
 1. Make it easy to parse.
 2. Space around item separator.
+3. Semantics of assignment.
