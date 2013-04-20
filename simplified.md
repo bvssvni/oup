@@ -16,7 +16,7 @@ This is handled by requiring space around operator.
 
     a = 10 - -3
     
-Ideas
+##Ideas
 
 1. Use brackets for sub-expressions.
 2. Use '.' to refer to variable in sub-expression.
@@ -33,6 +33,17 @@ Ideas
 9. Allow modules.
 10. Big first letter for public function.
 11. Use ')(' to declare functions.
+
+##Only Allow Assignment As Overriden Values
+
+    a := {
+        x := 0
+        y := x
+    }
+    
+    b : a {
+        x = 10
+    }
 
 Challenges
 
