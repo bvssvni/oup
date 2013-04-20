@@ -13,3 +13,7 @@
 Ideas
 
     )(  Declare function
+
+Challenges
+
+1. Unary subtraction.
