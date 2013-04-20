@@ -21,6 +21,8 @@ Ideas
 1. Use brackets for sub-expressions.
 2. Use '.' to refer to variable in sub-expression.
 3. Operators repeats argument if it is only 1.
+4. Only require space after operator.
+5. Only require space in front of negative number.
 4. Do not allow double-space around operators.
 4. Allow for-loops.
 5. Use '0 -> 10' as notion for 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
@@ -34,3 +36,4 @@ Ideas
 Challenges
 
 1. Make it easy to parse.
+2. Space around item separator.
