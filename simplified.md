@@ -7,35 +7,64 @@
 
 ##Required Space
 
-    a:=0        // Space is required around operator.
-    a := 0      // OK.
+    a:=0        // Error: Space is required after operator.
+    a:= 0       // OK.
     
 ##Unary Subtraction
 
-This is handled by requiring space around operator.
+This is handled by requiring space after operator.
 
-    a = 10 - -3
+    a := 10 - -3
     
+##Brackets For Sub-Expression
+
+    a := {
+        x := 0
+        y := 0
+    }
+    
+##Sub-Expression
+
+    a := .x, .y {
+        x := 0
+        y := 0
+    }
+    
+##Inheritance/Copy
+
+    a : b       // Inherits all members from b.
+    
+##Automatic Operator Overloading
+
+    a := 1, 2, 3, 4
+    b = a * 4   // Multiplies each item in list.
+
+##Assignment As Expression Input
+
+    a := {
+        x := 0
+        x2 := x * x
+    }
+    b : a {
+        x = 4
+    }
+
+##Referring To Parent
+
+    a := 0, 1, 2 {
+        x := this [] 0
+    }
+
+##Range Up And Range Down
+
+    0 -> 10     // Numbers from 0 to 9.
+    10 <- 0     // Numbers from 9 to 0.
+
+If 'x -> y' and x is bigger or equal to y, an empty range is returned.
+
 ##Ideas
 
-1. Use brackets for sub-expressions.
-2. Use '.' to refer to variable in sub-expression.
-3. Use ':' for inheritance.
-4. Use ':' for copying.
-3. Operators repeats argument if it is only 1.
-4. Only require space after operator.
-5. Only require space in front of negative number.
-4. Do not allow double-space around operators.
-5. Only allow assignment as overridden values.
-6. Require brackets for list.
-7. Require brackets for dictionary.
-8. Only one dictionary and list per node.
-8. Allow list of dictionaries.
-9. 'this' keyword.
-10. Use '/' as parent node instead of 'this'.
 4. Allow for-loops.
-5. Use '0 -> 10' as notion for 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
-6. Use '10 <- 0' as notion for 9, 8, 7, 6, 5, 4, 3, 2, 1, 0.
 7. Allow if-statements.
 8. Allow function declarations.
 9. Function return type by using ':'.
