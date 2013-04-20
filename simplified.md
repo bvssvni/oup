@@ -1,5 +1,7 @@
 #Simplified Syntax
 
+Decided
+
     =   Assign, throws exception if variable is not declared.
     :=  Declare variable, throws exception if variable name is declared.
     ()  Function call, throws exception if left argument is not a name.
@@ -10,12 +12,20 @@
     -=  Subtract right value with each item in list
     []  Takes from list using right arguments as indices.
     
+##Required Space
+
+    a:=0        // Space is required around operator.
+    a := 0      // OK.
+    
+##Unary Subtraction
+
+This is handled by requiring space around operator.
+
+    a = 10 - -3
+    
 Ideas
 
     )(  Declare function
 
-1. Require space around operator in syntax.
-
 Challenges
 
-1. Unary subtraction.
