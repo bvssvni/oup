@@ -49,12 +49,6 @@ This is handled by requiring space after operator.
         x = 4
     }
 
-##Referring To Parent
-
-    a := 0, 1, 2 {
-        x := this [] 0
-    }
-
 ##Range Up And Range Down
 
     0 -> 10     // Numbers from 0 to 9.
@@ -68,6 +62,8 @@ If 'x -> y' and x is bigger or equal to y, an empty range is returned.
 2. Each item in list gets members.
 2. '_index' to refer to current evaluated index.
 3. '_value' to refer to the current evaluated value.
+4. Use '_this' to refer to the current processed item.
+5. Automatic static members.
 4. Allow for-loops.
 7. Allow if-statements.
 8. Allow function declarations.
