@@ -58,7 +58,10 @@ If 'x -> y' and x is bigger or equal to y, an empty range is returned.
 
 ##Ideas
 
-1. Sub-expression evaluated for each item in list.
+1. Sub-expression are not sub nodes, they need to be placed in list.
+2. Optional inheritance.
+3. Function Declaration.
+2. Sub-expression evaluated for each item in list.
 2. Each item in list gets members.
 3. '=' requires ':=' to be declared later, but overrides it.
 2. '_index' to refer to current evaluated index.
@@ -79,6 +82,30 @@ If 'x -> y' and x is bigger or equal to y, an empty range is returned.
 9. Allow modules.
 10. Big first letter for public function.
 11. Use ')(' to declare functions.
+
+##Optional Inheritance
+
+    a := .x, .y {
+       x = 0
+       y = 0
+    }
+    
+    b : a = .y, .x
+    
+    c : a {
+        x = 10
+    }
+    
+'b' inherits 'a' but changes the order of the items in list.  
+'c' inherits 'a' but changes the value of one of the sub-expressions.
+
+##Function Declaration
+
+    Length := .length )( x, y {
+        length := Math.Sqrt () x * x + y * y
+    }
+    
+    a := Length () 10, 20
 
 ##Declare Functions Inside Variable Body
 
