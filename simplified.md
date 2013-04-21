@@ -67,6 +67,7 @@ If 'x -> y' and x is bigger or equal to y, an empty range is returned.
 1. Sub-expression evaluated for each item in list.
 2. Each item in list gets members.
 2. '_index' to refer to current evaluated index.
+3. '_value' to refer to the current evaluated value.
 4. Allow for-loops.
 7. Allow if-statements.
 8. Allow function declarations.
