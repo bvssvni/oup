@@ -69,6 +69,9 @@ If 'x -> y' and x is bigger or equal to y, an empty range is returned.
 8. Allow function declarations.
 9. Function return type by using ':'.
 10. Functions require arguments of base function to be passed.
+11. List arguments can be passed left to '()' when calling function.
+12. Choose between '.' or '[]' to access list item.
+12. Reflection supported by using '[]' as value.
 11. Declare functions inside variable body.
 10. A function is a variable created by passing arguments.
 11. No return from functions, using public members instead.
