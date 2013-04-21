@@ -68,24 +68,35 @@ If 'x -> y' and x is bigger or equal to y, an empty range is returned.
 7. Allow if-statements.
 8. Allow function declarations.
 9. Function return type by using ':'.
+10. Functions require arguments of base function to be passed.
+11. Declare functions inside variable body.
 10. A function is a variable created by passing arguments.
 11. No return from functions, using public members instead.
 9. Allow modules.
 10. Big first letter for public function.
 11. Use ')(' to declare functions.
 
-##Only Allow Assignment As Overriden Values
+##Declare Functions Inside Variable Body
 
-    a := {
-        x := 0
-        y := x
+    Complex () x , y {
+        Re := x
+    	Img := y
+    	Multiply : Complex () b : Complex {
+    		Re = this.Re * b.Re - this.Img * b.Img
+    		Img = this.Re * b.Img + this.Img * b.Re
+    	}
+    	Add : Complex () b : Complex {
+    		Re = this.Re + b.Re
+    		Img = this.Img + b.Img
+    	}
     }
     
-    b : a {
-        x = 10
-    }
+    a := Complex () 0 , 1
+    b := Complex () 10 , 10
+    c := a.Multiply () b
+    d := b.Add () a
 
-Challenges
+##Challenges
 
 1. Make it easy to parse.
 2. Space around item separator.
