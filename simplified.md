@@ -60,6 +60,7 @@ If 'x -> y' and x is bigger or equal to y, an empty range is returned.
 
 1. Sub-expression evaluated for each item in list.
 2. Each item in list gets members.
+3. '=' requires ':=' to be declared later, but overrides it.
 2. '_index' to refer to current evaluated index.
 3. '_value' to refer to the current evaluated value.
 4. Use '_this' to refer to the current processed item.
